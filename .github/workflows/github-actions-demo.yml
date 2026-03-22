@@ -1,5 +1,4 @@
 name: Qase Pytest Automation
-
 on:
   push:
     branches: [ "main" ]
