@@ -24,19 +24,16 @@ jobs:
     - name: 📦 Install dependencies
       run: |
         python -m pip install --upgrade pip
-        # Используем актуальный плагин
-        pip install qase-pytest 
+        # ИСПРАВЛЕНО: Ставим актуальный плагин
+        pip install pytest pytest-qase 
 
     - name: 🚀 Run Pytest
       env:
-        # 1. Токен (берется из Settings -> Secrets вашего репозитория)
+        # ИСПРАВЛЕНО: Эти имена переменных работают ТОЛЬКО с pytest-qase
+        QASE_MODE: report
         QASE_TESTOPS_API_TOKEN: ${{ secrets.QASE_TOKEN }}
-
-        # 2. Код проекта (LP)
         QASE_TESTOPS_PROJECT: "LP"
-
-        # 3. ID запуска (передается автоматически при нажатии кнопки в Qase)
         QASE_TESTOPS_RUN_ID: ${{ github.event.inputs.qase_run_id }}
       run: |
-        # Запускаем тесты. Плагин сам подтянет данные из env выше.
-        pytest --qase-mode=report
+        # Теперь просто запускаем pytest без флагов, так как всё в env
+        pytest
