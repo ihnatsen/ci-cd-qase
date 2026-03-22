@@ -25,7 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         # Используем актуальный плагин
-        pip install pytest pytest-qase
+        pip install qase-pytest 
 
     - name: 🚀 Run Pytest
       env:
